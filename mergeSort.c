@@ -86,9 +86,6 @@ int main(){
   printf("benchmark sorting: %i %i %i %i %i %i\n", 100, 1000, 5000, 10000, 50000, 100000);
   int arr[6] = {100, 1000, 5000, 10000, 50000, 100000};
 
-
-  //mergeSort(50);
-  //return 0;
   printf("Single-core test start \n");
   for(int i = 0; i < 6; i++){
     clock_t starttime = clock();
