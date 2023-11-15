@@ -10,7 +10,7 @@ void printArray(int arr[], int n){
   for(int i = 0; i < n; i++){
     printf(i == 0 ? "%i" : ", %i", arr[i]);
   }
-  printf("}");
+  printf("}\n");
 }
 
 int bubleSort(int size){
@@ -22,7 +22,7 @@ int bubleSort(int size){
   srand((unsigned) time(&t));
 
   for(i = 0; i < size; i++){
-    int r = rand() % 100;
+    int r = rand() % 10000;
     arr[i] = r;
   }
   //printArray(arr, SORT_SIZE);
