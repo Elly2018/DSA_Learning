@@ -12,11 +12,14 @@ void printArray(int arr[], int n){
 }
 
 void sort(int arr[], int size){
-  int i, j;
+  int i, j, temp;
   for(i = 1; i < size; i++){
     j = i;
-    (arr[i] < arr[i - 1]){
-
+    while(arr[j] < arr[j - 1] && j > 0){
+      temp = arr[j];
+      arr[j] = arr[j - 1];
+      arr[j - 1] = temp;
+      j--;
     }
   }
 }
@@ -32,8 +35,9 @@ void insertSort(int size){
     int r = rand() % 10000;
     arr[i] = r;
   }
-
+  //printArray(arr, size);
   sort(arr, size);
+  //printArray(arr, size);
 }
 
 int main(){
