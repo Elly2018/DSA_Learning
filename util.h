@@ -1,5 +1,17 @@
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
+
+void generateArray(int* arr, int size, int limit){
+  int i;
+  time_t t;
+
+  srand((unsigned) time(&t));
+  for(i = 0; i < size; i++){
+    int r = rand() % limit;
+    arr[i] = r;
+  }
+}
 
 void printArray(int arr[], int n){
   printf("{ ");
