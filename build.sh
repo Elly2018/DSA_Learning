@@ -13,3 +13,4 @@ gcc -std=c11 -Wall -W bubbleSort.c -o bin/bubbleSort.exe
 gcc -std=c11 -Wall -W insertSort.c -o bin/insertSort.exe
 gcc -std=c11 -Wall -W quickSort.c -o bin/quickSort.exe
 
+echo search algorithms
