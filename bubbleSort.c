@@ -2,18 +2,10 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "util.h"
 
-#define SORT_SIZE 50
 
-void printArray(int arr[], int n){
-  printf("{");
-  for(int i = 0; i < n; i++){
-    printf(i == 0 ? "%i" : ", %i", arr[i]);
-  }
-  printf("}\n");
-}
-
-int bubleSort(int size){
+int bubleSort(int size, int printy){
   time_t t;
   int i, j, temp;
   bool swap = false;
@@ -25,10 +17,8 @@ int bubleSort(int size){
     int r = rand() % 10000;
     arr[i] = r;
   }
-  //printArray(arr, SORT_SIZE);
 
-
-
+  if(printy) printArray(arr, size);
   for(i = 0; i < size; i++){
     for(j = 0; j < size - 1 - i; j++){
       if(arr[j] > arr[j + 1]){        
@@ -40,18 +30,21 @@ int bubleSort(int size){
     }
     if(!swap) break;
   }
-  
-  //printArray(arr, SORT_SIZE);
-
+  if(printy) printArray(arr, size);
   return 0;
  }
 
-int main(){
-  printf("benchmark sorting: %i %i %i %i %i\n", 100, 1000, 5000, 10000, 50000);
-  int arr[5] = {100, 1000, 5000, 10000, 50000};
-  for(int i = 0; i < 5; i++){
+int main(int argc, char* argv[]){
+  int count = 0, printy = 0;
+  int* arr = getArray(argc, argv, &printy, &count);
+  printf("count: %i, printy: %i\n", count, printy);
+  if(arr == NULL){
+    printf("arr is NULL\n");
+    return 1;
+  }
+  for(int i = 0; i < count; i++){
     clock_t starttime = clock();
-    bubleSort(arr[i]);
+    bubleSort(arr[i], printy);
     printf("result: %i,  %f\n", arr[i], ((double)(clock() - starttime)) / CLOCKS_PER_SEC);
   }
   return 0;

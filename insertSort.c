@@ -1,15 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-
-void printArray(int arr[], int n){
-  printf("{");
-  for(int i = 0; i < n; i++){
-    printf(i == 0 ? "%i" : ", %i", arr[i]);
-  }
-  printf("}\n");
-}
+#include "util.h"
 
 void sort(int arr[], int size){
   int i, j, temp;
@@ -24,7 +16,7 @@ void sort(int arr[], int size){
   }
 }
 
-void insertSort(int size){ 
+void insertSort(int size, int printy){ 
   time_t t;
   int i;
   int arr[size];
@@ -35,18 +27,23 @@ void insertSort(int size){
     int r = rand() % 10000;
     arr[i] = r;
   }
-  //printArray(arr, size);
+  if(printy) printArray(arr, size);
   sort(arr, size);
-  //printArray(arr, size);
+  if(printy) printArray(arr, size);
 }
 
-int main(){
-  printf("benchmark sorting: %i %i %i %i %i %i\n", 100, 1000, 5000, 10000, 50000, 100000);
-  int arr[6] = {100, 1000, 5000, 10000, 50000, 100000};
+int main(int argc, char* argv[]){
+  int count = 0, printy = 0;
+  int* arr = getArray(argc, argv, &printy, &count);
+  printf("count: %i, printy: %i\n", count, printy);
+  if(arr == NULL){
+    printf("arr is NULL\n");
+    return 1;
+  }
 
-  for(int i = 0; i < 6; i++){
+  for(int i = 0; i < count; i++){
     clock_t starttime = clock();
-    insertSort(arr[i]);
+    insertSort(arr[i], printy);
     printf("result: %i,  %f\n", arr[i], ((double)(clock() - starttime)) / CLOCKS_PER_SEC);
   }
 
