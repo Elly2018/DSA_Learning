@@ -1,16 +1,10 @@
-  ~/DSA_Learning
-   bin
-   lib
-   src
-    󰉖 basic
-     search
-     sorting
-     struct
-     thread
-     util                            
-   │ * baisc
-   └  sorting.c
-    LICENSE
-    README.md
-    build.sh                        󰄱 
-   (2 hidden items)
+#include <stdlib.h>
+#include <stdio.h>
+
+
+int main(int argc, char* argv[]){
+  for(int i = 0; i < argc; i++){
+    printf("%s", argv[i]);
+  }
+  return 0;
+}
