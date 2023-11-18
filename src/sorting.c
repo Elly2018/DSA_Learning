@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*
+ * This is for the benchmark
+ */
 
 int main(int argc, char* argv[]){
   FILE *fp;

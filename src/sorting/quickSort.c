@@ -3,9 +3,21 @@
 #include "util.h"
 
 int part(int arr[], int low, int high){
+  int temp;
   int pi = arr[high];
-  
-  return 0;
+  int i = (low-1);
+  for(int j = low; j <= high; j++){
+    if(arr[j]<pi){
+      i++;
+      temp = arr[j];
+      arr[j] = arr[i];
+      arr[i] = temp;
+    }
+  }
+  temp = arr[i+1];
+  arr[i+1] = arr[high];
+  arr[high] = temp;
+  return i+1;
 }
 
 void sort(int arr[], int low, int high){
