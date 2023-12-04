@@ -2,41 +2,48 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+// Predefine the struct otherwise below struct will getting compile error
 typedef struct Element Element;
 
-struct Element {
-	int value;
-	struct Element* next;
+struct List {
+	struct Element* start;
+	struct Element* end;
 };
 
-int Count(struct Element* element){
+struct Element {
+	int value; // The actual data
+	struct Element* next; // Pointing to next data
+};
+
+int Count(struct List* list){
   int r = 1;
-  struct Element* n = element;
-  printf("C in\n");
-	while (n->next != NULL){
+  struct Element* n = list->start;
+  if (list->start == list->end) return r;
+  r++;
+	while (n->next != list->end){
 		r++;
-		n = element->next;
-    printf("counting %i\n", r);
+		n = n->next;
 	}
-  printf("C out\n");
 	return r;
 }
 
-void Add(struct Element* list, int value){
-	struct Element* last = list;
-  while (last->next != NULL){
-		last = list->next;
-	}
+void Add(struct List* list, int value){
   struct Element* lastElement = (Element*)malloc(sizeof(Element));
   lastElement->value = value;
   lastElement->next = NULL;
-	last->next = lastElement;
+	list->end->next = lastElement;
+	list->end = lastElement;
 }
 
 int main(){
   struct Element e = {0, NULL};
-  printf("%i\n", Count(&e));
-  Add(&e, 50);
-  printf("%i\n", Count(&e));
+  struct List l = {&e, &e};
+  printf("%i\n", Count(&l));
+  Add(&l, 50);
+  Add(&l, 50);
+  Add(&l, 50);
+  printf("%i\n", Count(&l));
+  Add(&l, 50);
+  printf("%i\n", Count(&l));
   return 0;
 }
