@@ -76,7 +76,11 @@ int main(){
   PrintList(&l);
   printf("Current Count: %i\n", Count(&l));
   Add(&l, 20);
+  PrintList(&l);
+  printf("Current Count: %i\n", Count(&l));
   Add(&l, 75);
+  PrintList(&l);
+  printf("Current Count: %i\n", Count(&l));
   Add(&l, 1577);
   PrintList(&l);
   printf("Current Count: %i\n", Count(&l));
